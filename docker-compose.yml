@@ -9,3 +9,13 @@ services:
           - POSTGRES_PASSWORD=carlos123
         ports:
           - 5432:5432
+        volumes:
+          - ./postgres_data:/var/lib/postgresql/data
+    
+    pgadmin:
+      image: dpage/pgadmin4
+      environment:
+          - PGADMIN_DEFAULT_EMAIL=mao_23_@hotmail.com
+          - PGADMIN_DEFAULT_PASSWORD=carlos123
+      ports:
+        - 5050:80

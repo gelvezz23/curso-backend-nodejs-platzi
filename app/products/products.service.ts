@@ -1,12 +1,18 @@
 import { ProductsProps } from "./types";
 import boom from "@hapi/boom";
+//import { pool } from "./../../libs/postgres/pool";
+import { sequelize } from "../../libs/sequelize";
+//import { Pool } from "pg";
 const faker = require("faker");
 
 class ProductsService {
   products: ProductsProps[];
+  //pool: Pool;
   constructor() {
     this.products = [];
     this.generate();
+    //this.pool = pool;
+    //this.pool.on("error", (err: Error) => console.error(err));
   }
   generate() {
     const limit = 100;
@@ -26,9 +32,10 @@ class ProductsService {
   }
 
   async find() {
-    const products = this.products;
-    if (!products) throw boom.notFound("Product not found");
-    return products;
+    const query = "SELECT * FROM tasks";
+    const [data, metadata] = await sequelize.query(query);
+    if (!data) throw boom.notFound("Product not found");
+    return data;
   }
 
   async findById(id: string) {
