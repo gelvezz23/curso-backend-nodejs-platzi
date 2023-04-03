@@ -5,6 +5,7 @@ import {
   handleErrors,
   logErrors,
   boomHandleErrors,
+  ormHandlerError,
 } from "../../middlewares/errors.handler";
 import { router } from "./router";
 import { options } from "../../middlewares/cors.validate";
@@ -21,6 +22,7 @@ export const Server = () => {
     try {
       router(app);
       app.use(logErrors);
+      app.use(ormHandlerError);
       app.use(boomHandleErrors);
       app.use(handleErrors);
       app.listen(port, () => {

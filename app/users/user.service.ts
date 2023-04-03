@@ -11,9 +11,10 @@ class UserService {
   }
 
   async find() {
-    const rta = await User.findAll();
+    const users = await User.findAll();
+    if (!users) throw boom.notFound("Users not founds");
     //const rta = await client.query("SELECT * FROM tasks");
-    return rta;
+    return users;
   }
 
   async findOne(id: string) {

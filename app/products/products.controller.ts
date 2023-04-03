@@ -35,7 +35,7 @@ export const addNewProducts = async (
   next: NextFunction
 ) => {
   try {
-    const body = req.body;
+    const { body } = req;
     const newData = await service.create(body);
     res.status(201).json({
       message: "create",

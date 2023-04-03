@@ -1,4 +1,5 @@
 import { Model, DataTypes, Sequelize } from "sequelize";
+import { Customer } from "../../customer/models/customer.model";
 import { userProps } from "../types";
 
 export const USER_TABLE = "users";
@@ -26,10 +27,17 @@ export const userModel = {
     defaultValue: DataTypes.NOW,
     unique: true,
   },
+  role: {
+    allowNull: false,
+    type: DataTypes.STRING,
+    defaultValue: "user",
+  },
 };
 
 export class User extends Model<userProps> {
-  static associate() {}
+  static associate() {
+    this.hasOne(Customer, { as: "customer", foreignKey: "userId" });
+  }
 
   static config(sequelize: Sequelize) {
     return {

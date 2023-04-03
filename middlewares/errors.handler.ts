@@ -1,5 +1,4 @@
 import { ErrorRequestHandler } from "express";
-
 export const logErrors: ErrorRequestHandler = (error, req, res, next) => {
   console.error(error);
   next(error);
@@ -26,4 +25,15 @@ export const boomHandleErrors: ErrorRequestHandler = (
   } else {
     next(error);
   }
+};
+
+export const ormHandlerError: ErrorRequestHandler = (error, req, res, next) => {
+  if (error?.sql) {
+    res.status(409).json({
+      statusCode: 409,
+      message: error.errors.name,
+      errors: error.errors,
+    });
+  }
+  next(error);
 };

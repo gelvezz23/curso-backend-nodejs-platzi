@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { validateHandler } from "../../middlewares/validate";
 import {
+  createCategories,
   deleteCategories,
   getCategories,
   getCategoriesById,
@@ -23,7 +24,7 @@ router.get(
   getCategoriesById
 );
 
-router.post("/", validateHandler(createCategoryDto, "body"));
+router.post("/", validateHandler(createCategoryDto, "body"), createCategories);
 
 router.patch(
   "/:id",

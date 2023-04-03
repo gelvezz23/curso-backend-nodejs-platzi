@@ -1,18 +1,23 @@
-import boom from "@hapi/boom";
+import { Category } from "./models/categories.model";
 import { categoriesProps } from "./types";
 
 class CategoryService {
   constructor() {}
   async create(data: categoriesProps) {
-    return data;
+    const newCategory = await Category.create(data);
+    return newCategory;
   }
 
   async find() {
-    return [];
+    const categories = await Category.findAll();
+    return categories;
   }
 
   async findOne(id: string) {
-    return { id };
+    const category = await Category.findByPk(id, {
+      include: ["products"],
+    });
+    return category;
   }
 
   async update(id: string, changes: categoriesProps) {
