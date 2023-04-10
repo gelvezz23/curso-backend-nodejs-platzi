@@ -35,9 +35,7 @@ export const userModel = {
 };
 
 export class User extends Model<userProps> {
-  static associate() {
-    this.hasOne(Customer, { as: "customer", foreignKey: "userId" });
-  }
+  static associate() {}
 
   static config(sequelize: Sequelize) {
     return {

@@ -14,9 +14,7 @@ class CategoryService {
   }
 
   async findOne(id: string) {
-    const category = await Category.findByPk(id, {
-      include: ["products"],
-    });
+    const category = await Category.findByPk(id);
     return category;
   }
 

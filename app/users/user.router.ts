@@ -7,7 +7,7 @@ import {
   updateUser,
 } from "./user.controller";
 
-import { validateHandler } from "./../../middlewares/validate";
+import { validateHandler } from "../../middleware/middleware";
 import { updateUserDto, createUserDto, getUserDto } from "./user.dto";
 
 const router = Router();

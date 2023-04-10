@@ -51,14 +51,14 @@ export const productModel = {
 
 export class Products extends Model<ProductsProps> {
   static associate() {
-    Products.belongsTo(Category, { as: "category" });
+    Products.belongsTo(Category, { as: "category", foreignKey: "categoryId" });
   }
 
   static config(sequelize: Sequelize) {
     return {
       sequelize,
       tableName: PRODUCT_TABLE,
-      modelName: "Product",
+      modelName: "Products",
       timestamps: false,
     };
   }

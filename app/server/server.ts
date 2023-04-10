@@ -6,9 +6,10 @@ import {
   logErrors,
   boomHandleErrors,
   ormHandlerError,
-} from "../../middlewares/errors.handler";
+} from "../../middleware/errors.handler";
 import { router } from "./router";
-import { options } from "../../middlewares/cors.validate";
+import { options } from "../../middleware/cors.validate";
+import { sequelize_postgres } from "../../libs/sequelize/sequelize_postgres";
 
 export const Server = () => {
   const app: Application = express();
@@ -20,6 +21,7 @@ export const Server = () => {
 
   const listen = () => {
     try {
+      sequelize_postgres.authenticate();
       router(app);
       app.use(logErrors);
       app.use(ormHandlerError);

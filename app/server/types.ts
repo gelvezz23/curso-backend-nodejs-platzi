@@ -3,5 +3,7 @@ export interface PathProps {
   categories: string;
   users: string;
   customer: string;
+  order: string;
+  orderProduct: string;
   auth: string;
 }

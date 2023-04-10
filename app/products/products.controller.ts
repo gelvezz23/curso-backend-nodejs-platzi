@@ -8,7 +8,9 @@ export const getProducts = async (
   next: NextFunction
 ) => {
   try {
-    const products = await service.find();
+    const { query } = req;
+    console.log(query);
+    const products = await service.find(query);
     res.json(products);
   } catch (error: any) {
     next(error);
@@ -25,6 +27,20 @@ export const getProductsById = async (
     const filterById = await service.findById(id);
     res.json(filterById);
   } catch (error: any) {
+    next(error);
+  }
+};
+
+export const getProductsByCategory = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { id } = req.params;
+    const productByCategory = await service.findByCategory(id);
+    res.status(200).json(productByCategory);
+  } catch (error) {
     next(error);
   }
 };

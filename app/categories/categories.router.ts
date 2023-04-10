@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { validateHandler } from "../../middlewares/validate";
+import { validateHandler } from "../../middleware/middleware";
 import {
   createCategories,
   deleteCategories,

@@ -1,4 +1,5 @@
 import { Model, DataTypes, Sequelize } from "sequelize";
+import { Order } from "../../orders/models/order.model";
 import { User, USER_TABLE } from "../../users/models/user.model";
 import { customerProps } from "../types";
 
@@ -46,7 +47,8 @@ export const customerModel = {
 
 export class Customer extends Model<customerProps> {
   static associate() {
-    this.belongsTo(User, { as: "user" });
+    Customer.belongsTo(User, { as: "user", foreignKey: "userId" });
+    //Order.hasMany(Customer, { as: "orders", foreignKey: "customerId" });
   }
 
   static config(sequelize: Sequelize) {

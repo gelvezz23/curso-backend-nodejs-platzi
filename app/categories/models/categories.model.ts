@@ -1,6 +1,5 @@
-import { Products } from "../../products/models/product.model";
-
 import { Model, DataTypes, Sequelize } from "sequelize";
+import { Products } from "../../products/models/product.model";
 import { categoriesProps } from "../types";
 
 export const CATEGORY_TABLE = "categories";
@@ -23,12 +22,7 @@ export const categoryModel = {
 };
 
 export class Category extends Model<categoriesProps> {
-  static associate() {
-    this.hasMany(Products, {
-      as: "product",
-      foreignKey: "categoryId",
-    });
-  }
+  static associate() {}
   static config(sequelize: Sequelize) {
     return {
       sequelize,
